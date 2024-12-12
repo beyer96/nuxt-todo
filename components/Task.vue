@@ -1,6 +1,10 @@
 <template>
   <div
-    :class="[isCompleted ? 'bg-green-100' : 'bg-slate-100']"
+    :class="[
+      isCompleted
+        ? 'bg-green-100 hover:bg-green-200 line-through'
+        : 'bg-slate-100 hover:bg-slate-200',
+    ]"
     class="rounded-full w-full p-6 hover:cursor-pointer"
     @click="toggleCompleted"
   >

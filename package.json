@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit generate && drizzle-kit migrate",
     "db:seed": "bun run ./server/database/seeds"
   },
   "dependencies": {

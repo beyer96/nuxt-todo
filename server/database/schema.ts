@@ -1,3 +1,4 @@
+import { sql } from "drizzle-orm";
 import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 
 export const tasksTable = sqliteTable("tasks", {
@@ -7,5 +8,5 @@ export const tasksTable = sqliteTable("tasks", {
   completed: integer({ mode: "boolean" }).notNull().default(false),
   createdAt: integer("created_at", { mode: "timestamp" })
     .notNull()
-    .default(new Date()),
+    .default(sql`(current_timestamp)`),
 });

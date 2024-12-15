@@ -50,8 +50,18 @@ const props = defineProps<{
 const isCompleted = ref(props.task.completed);
 const descriptionOpened = ref(false);
 
-const toggleCompleted = () => {
-  isCompleted.value = !isCompleted.value;
+const toggleCompleted = async () => {
+  try {
+    await $fetch(`/api/tasks/${props.task.id}`, {
+      method: "PUT",
+      body: {
+        completed: !isCompleted.value,
+      } satisfies Partial<Task>,
+    });
+    isCompleted.value = !isCompleted.value;
+  } catch (error) {
+    console.log(error);
+  }
 };
 const toggleDescription = () => {
   descriptionOpened.value = !descriptionOpened.value;

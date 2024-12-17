@@ -13,7 +13,6 @@ try {
   const { data, error } = await useFetch("/api/tasks");
   if (error.value) throw new Error(error.value.message);
 
-  console.log(data.value);
   tasks = data.value;
 } catch (error) {
   console.error(error);

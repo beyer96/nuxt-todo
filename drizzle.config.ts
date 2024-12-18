@@ -5,7 +5,8 @@ export default defineConfig({
   schema: "./server/database/schema.ts",
   out: "./drizzle",
   dbCredentials: {
-    url: "file:./development.db",
+    // https://github.com/nuxt/nuxt/issues/29813#issuecomment-2489627738
+    url: "file:./server/database/development.db",
   },
   verbose: true,
   strict: true,

@@ -5,7 +5,7 @@ export default defineConfig({
   schema: "./server/database/schema.ts",
   out: "./drizzle",
   dbCredentials: {
-    url: "file:./development.db",
+    url: "file:./server/database/development.db",
   },
   verbose: true,
   strict: true,

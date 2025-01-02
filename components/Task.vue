@@ -5,7 +5,7 @@
         ? 'bg-green-100 hover:bg-green-200'
         : 'bg-slate-100 hover:bg-slate-200',
     ]"
-    class="w-full p-6"
+    class="task w-full p-6"
   >
     <div
       class="flex items-center gap-2 hover:cursor-pointer"
@@ -33,6 +33,13 @@
         :class="{ 'rotate-180': descriptionOpened }"
         ref="chevronIcon"
       />
+      <button
+        @click="deleteTask"
+        class="bg-red-700 text-slate-100 font-semibold rounded-lg px-3 py-2 ms-3"
+        :data-task-id="task.id"
+      >
+        Delete task
+      </button>
     </div>
     <div class="description mt-4">
       <p>{{ task.description }}</p>
@@ -41,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Task } from "~/types/task";
+import type { Task, DeleteTaskResponse } from "~/types/task";
 
 const props = defineProps<{
   task: Task;
@@ -63,8 +70,25 @@ const toggleCompleted = async () => {
     console.log(error);
   }
 };
+
 const toggleDescription = () => {
   descriptionOpened.value = !descriptionOpened.value;
+};
+
+const deleteTask = async (event: Event) => {
+  const { taskId } = (event.target as HTMLButtonElement).dataset;
+
+  try {
+    const response = await $fetch<DeleteTaskResponse>(`/api/tasks/${taskId}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) throw new Error(response.message);
+
+    (event.target as HTMLButtonElement).closest(".task")?.remove();
+  } catch (error) {
+    console.error(error);
+  }
 };
 </script>
 

@@ -5,3 +5,12 @@ export interface Task {
   completed: boolean;
   createdAt: string;
 }
+
+export interface DeleteTaskResponse {
+  ok: boolean;
+  status: string;
+  statusCode: number;
+  message: string;
+  data?: any;
+  error?: any;
+}

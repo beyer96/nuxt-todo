@@ -2,7 +2,6 @@ import { and, eq } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "~/server/database";
 import { usersTable } from "~/server/database/schema";
-import type { User } from "~/types/user";
 
 const bodySchema = z.object({
   username: z.string(),

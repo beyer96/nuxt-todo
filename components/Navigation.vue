@@ -12,6 +12,14 @@
         <Icon name="mdi:user" size="24" class="me-1" />
         {{ (user as User).username }}
       </li>
+      <div v-else class="ms-auto flex flex-row gap-4">
+        <li>
+          <NuxtLink to="/signup">Sign Up</NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/login">Login</NuxtLink>
+        </li>
+      </div>
     </ul>
   </nav>
 </template>
